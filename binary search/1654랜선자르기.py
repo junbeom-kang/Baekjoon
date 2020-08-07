@@ -1,27 +1,22 @@
 import sys
 input=sys.stdin.readline
-n,c=map(int,input().split())
+k,n=map(int,input().split())
 stack=[]
-for i in range(n):
+for i in range(k):
     stack.append(int(input()))
-stack.sort()
-
+ans=0
 def check(mid):
-    cnt=1
-    temp=stack[0]
-    for i in range(1,len(stack)):
-        if stack[i]>=temp+mid:
-            temp=stack[i]
-            cnt+=1
-    if cnt>=c:
+    cnt=0
+    for i in stack:
+        cnt+=i//mid
+    if cnt>=n:
         return True
     else:
         return False
 
-def BinarySearch():
-    ans=0
-    left=1
-    right=stack[-1]
+def UpperBound():
+    left=1        ##0으로하면 런타임에러 0으로 나누는 경우때문에
+    right=max(stack)
     while left<=right:
         mid=(left+right)//2
         if check(mid):
@@ -32,4 +27,4 @@ def BinarySearch():
     return ans
 
 
-print(BinarySearch())
+print(UpperBound())
