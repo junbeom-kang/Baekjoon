@@ -1,5 +1,2 @@
-a=1,3
-a=set(a)
-a.add(4)
-a.add((2,1))
+a=[3,map(int,input().split())]
 print(a)
