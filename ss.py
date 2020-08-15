@@ -1,2 +1,2 @@
-a=[3,map(int,input().split())]
+a=[0]*100
 print(a)
