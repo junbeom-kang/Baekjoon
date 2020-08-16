@@ -1,44 +1,30 @@
-# https://www.acmicpc.net/problem/2206
 import sys
+from heapq import *
+INF=sys.maxsize
+input=sys.stdin.readline
+v,e=map(int,input().split())
+k=int(input())
+adj=[[]for _ in range(v+1)]
+heap=[]
+ans=[INF]*(v+1)
+ans[k]=0
+for _ in range(e):
+    a,b,c=map(int,input().split())
+    adj[a].append((c,b))
+heappush(heap,(0,k))
+while heap:
+    weight,num=heappop(heap)
+    if weight>ans[num]:
+        continue
+    else:
+        ans[num]=weight
+        for c,b in adj[num]:
+            if weight+c<ans[b]:
+                ans[b]=weight+c
+                heappush(heap,(ans[b],b))
+for i in ans[1:]:
+    if i==INF:
+        print('INF')
+    else:
+        print(i)
 
-I = sys.stdin.readline
-
-
-def bfs():
-    que = [(0, 0, False)]
-    count = 1
-    while que:
-        que_ = []
-        for r, c, flag in que:
-            if r == R - 1 and c == C - 1:
-                return count
-            for dr, dc in dir:
-                rr = r + dr
-                cc = c + dc
-                if 0 <= rr < R and 0 <= cc < C:
-                    if not flag:
-                        if not visitF[rr][cc]:
-                            if Map[rr][cc] == '0':
-                                visitF[rr][cc] = True
-                                que_.append((rr, cc, False))
-                            else:
-                                visitF[rr][cc] = True
-                                que_.append((rr, cc, True))
-                    else:
-                        if not visitT[rr][cc]:
-                            if Map[rr][cc] == '0':
-                                visitT[rr][cc] = True
-                                que_.append((rr, cc, True))
-
-        que = que_
-        count += 1
-    return -1
-
-
-dir = [[1, 0], [-1, 0], [0, 1], [0, -1]]
-R, C = list(map(int, I().split()))
-Map = [list(I()) for _ in range(R)]
-visitF = [[False] * C for _ in range(R)]
-visitT = [[False] * C for _ in range(R)]
-
-print(bfs())
