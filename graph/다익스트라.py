@@ -1,7 +1,7 @@
 import sys
 from heapq import *
 input=sys.stdin.readline
-def djekstra(k):
+def dijkstra(k):
     ans[k]=0
     heappush(heap,[0,k])
     while heap:
@@ -9,7 +9,6 @@ def djekstra(k):
         if weight>ans[num]:
             continue
         else:
-            ans[num]=weight
             for c,b in adj[num]:
                 if weight+c<ans[b]:
                     ans[b]=weight+c
@@ -27,7 +26,7 @@ for _ in range(e):
     a,b,c=map(int,input().split())
     adj[a].append([c,b])
 
-djekstra(k)
+dijkstra(k)
 for i in ans[1:]:
     if i==INF:
         print('INF')

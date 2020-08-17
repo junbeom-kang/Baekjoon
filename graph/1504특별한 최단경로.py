@@ -10,7 +10,7 @@ for _ in range(e):
     adj[b].append((c,a))
 one,two=map(int,input().split())
 
-def djekstra(a,b):
+def dijkstra(a,b):
     Q=[]
     ans=[INF]*(n+1)
     ans[a]=0
@@ -20,7 +20,6 @@ def djekstra(a,b):
         if weight>ans[num]:
             continue
         else:
-            ans[num]=weight
             for c,d in adj[num]:
                 if weight+c<ans[d]:
                     ans[d]=weight+c
