@@ -1,7 +1,6 @@
 import sys
 from math import gcd,factorial
 input=sys.stdin.readline
-sys.setrecursionlimit(10000)
 
 def dfs(L,visit,rest):
     if visit==(1<<n)-1:
@@ -13,12 +12,11 @@ def dfs(L,visit,rest):
         return dp[visit][rest]
     for i in range(n):
         if visit&(1<<i)==0:
-            dp[visit][rest]+=dfs(L+long[i],visit|(1<<i),(rest+stack[i]*10**L)%k)
+            dp[visit][rest]+=dfs(L+long[i],visit|(1<<i),(rest+rm[i][L])%k)
     dp[visit][rest]+=1
     return dp[visit][rest]
 
 n=int(input())
-ans=0
 stack=[]
 for _ in range(n):
     stack.append(int(input()))
@@ -27,6 +25,10 @@ for i in stack:
     long.append(len(str(i)))
 k=int(input())
 dp=[[-1]*k for _ in range(1<<n)]
+rm = [[-1]*(sum(long)) for _ in range(n)]
+for i in range(n):
+    for j in range(sum(long)):
+        rm[i][j] = (stack[i]*10**j)%k
 temp=dfs(0,0,0)
 F=factorial(n)
 if temp==0:
