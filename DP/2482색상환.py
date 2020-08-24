@@ -1,5 +1,6 @@
 import sys
 input=sys.stdin.readline
+sys.setrecursionlimit(100000)
 INF=sys.maxsize
 n=int(input())
 k=int(input())
