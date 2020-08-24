@@ -10,7 +10,8 @@ def find(v):
     if parent[v]==v:
         return v
     else:
-        return find(parent[v])
+        parent[v]=find(parent[v])
+        return parent[v]
 def merge(a,b):
     q=find(a)
     w=find(b)
