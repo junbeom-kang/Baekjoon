@@ -5,11 +5,11 @@ def bs(v):
     right=len(ans)-1
     while left<=right:
         mid=(left+right)//2
-        if ans[mid]<v:
-            left=mid+1
-        elif ans[mid]>=v:
+        if v<=ans[mid]:
             temp=mid
             right=mid-1
+        elif v>ans[mid]:
+            left=mid+1
     return temp
 
 n=int(input())
@@ -21,4 +21,3 @@ for i in stack:
     else:
         ans[bs(i)]=i
 print(len(ans))
-print(*ans)
