@@ -1,19 +1,36 @@
 import sys
 input=sys.stdin.readline
+def bs(v):
+    left=0
+    right=len(ans)-1
+    while left<=right:
+        mid=(left+right)//2
+        if v<=ans[mid]:
+            temp=mid
+            right=mid-1
+        elif v>ans[mid]:
+            left=mid+1
+    return temp
+
 n=int(input())
 stack=list(map(int,input().split()))
-ans=[0 for _ in range(n)]
-for i in range(0,n):
-    for j in range(0,i):
-        if stack[i]>stack[j] and ans[i]<ans[j]:
-            ans[i]=ans[j]
-    ans[i]+=1
-a=max(ans)
-print(a)
-temp=ans.index(a)
-A=[stack[temp]]
-for i in range(temp-1,-1,-1):
-    if ans[i]==a-1 and stack[i]<stack[temp]:
+ans=[stack[0]]
+reverse=[]
+num=0
+for i in stack:
+    if i>ans[-1]:
+        ans.append(i)
+        reverse.append(len(ans)-1)
+    else:
+        a=bs(i)
+        ans[a]=i
+        reverse.append(a)
+    num += 1
+temp=len(ans)
+print(temp)
+A=[]
+for i in range(len(reverse)-1,-1,-1):
+    if reverse[i]==temp-1:
         A.append(stack[i])
-        a-=1
+        temp-=1
 print(*A[::-1])
