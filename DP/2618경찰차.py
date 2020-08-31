@@ -4,7 +4,7 @@ sys.setrecursionlimit(10**9)
 n=int(input())
 w=int(input())
 adj=[]
-dp=[[-1]*(n+1) for _ in range(n+1)]
+dp=[[-1]*(w+1) for _ in range(w+1)]
 for i in range(w):
     adj.append(list(map(int,input().split())))
 
@@ -67,4 +67,3 @@ for i in range(w):
             ans.append(1)
 for i in ans:
     print(i)
-print(dp)
