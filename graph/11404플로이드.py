@@ -1,10 +1,9 @@
-import sys,copy
-def input():
-    return sys.stdin.readline()
-
+import sys
+input=sys.stdin.readline
+INF=sys.maxsize
 n=int(input())
 m=int(input())
-arr=[[1000000]*(n+1) for _ in range(n+1)]
+arr=[[INF]*(n+1) for _ in range(n+1)]
 for i in range(m):
     x,y,z=list(map(int,input().split()))
     if z<arr[x][y]:
@@ -16,12 +15,11 @@ for k in range(1,n+1):
             if i==j:
                 arr[i][j]==0
                 continue
-            if arr[i][k]+arr[k][j]<arr[i][j]:
-                arr[i][j]=arr[i][k]+arr[k][j]
+            arr[i][j]=min(arr[i][k]+arr[k][j],arr[i][j])
 for i in range(1,n+1):
     for j in range(1,n+1):
-        if arr[i][j]==1000000:
+        if arr[i][j]==INF:
             print(0,end=' ')
-            continue
-        print(arr[i][j],end=' ')
+        else:
+            print(arr[i][j],end=' ')
     print()

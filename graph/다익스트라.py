@@ -1,6 +1,8 @@
 import sys
 from heapq import *
 input=sys.stdin.readline
+
+
 def dijkstra(k):
     ans[k]=0
     heappush(heap,[0,k])
@@ -13,7 +15,6 @@ def dijkstra(k):
                 if weight+c<ans[b]:
                     ans[b]=weight+c
                     heappush(heap,[ans[b],b])
-
 
 
 v,e=map(int,input().split())
