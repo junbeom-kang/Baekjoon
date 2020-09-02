@@ -26,7 +26,7 @@ def ford():
                 sys.exit()
     return ans
 
-temp=ford()
+temp=ford() 
 for i in range(2,n+1):
     if temp[i]==INF:
         print(-1)
