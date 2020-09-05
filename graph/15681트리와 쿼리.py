@@ -3,19 +3,13 @@ input=sys.stdin.readline
 sys.setrecursionlimit(10**9)
 def makeTree(v):
     temp=0
-    end=True
     visit[v] = True
     for i in adj[v]:
         if not visit[i]:
             parent[i]=v
             temp+=makeTree(i)
-            end=False
-    if end:
-        cnt[v]=1
-        return 1
-    else:
-        cnt[v]=temp+1
-        return temp+1
+    cnt[v]=temp+1
+    return temp+1
 
 n,r,q=map(int,input().split())
 parent=[i for i in range(n+1)]
