@@ -1,37 +1,36 @@
 import sys
 input=sys.stdin.readline
-def maketable(pattern):
-    p=len(pattern)
-    table=[0]*p
-    j=0
-    for i in range(1,p):
-        while j>0 and pattern[i]!=pattern[j]:
-                j=table[j-1]
-        if pattern[i]==pattern[j]:
-            j+=1
-            table[i]=j
-    return table
-
-def SMP(text,pattern,table):
+def makeTable(P):
+    lp=len(P)
+    Table=[0]*lp
+    i=0
+    for j in range(1,lp):
+        while i>0 and P[i]!=P[j]:
+            i=Table[i-1]
+        if P[i]==P[j]:
+            i+=1
+            Table[j]=i
+    return Table
+def KMP(P,T):
     ans=[]
-    j = 0
-    text_len=len(text)
-    patter_len=len(pattern)
-    for i in range(text_len):
-        while j>0 and pattern[j]!=text[i]:
-            j=table[j-1]
-        if pattern[j]==text[i]:
-            if j==patter_len-1:
-                ans.append(i-patter_len+2)
-                j=table[j]
+    lt=len(T)
+    lp=len(P)
+    table=makeTable(P)
+    i=0
+    for j in range(lt):
+        while i>0 and P[i]!=T[j]:
+            i=table[i-1]
+        if P[i]==T[j]:
+            if i==lp-1:
+                ans.append(j-lp+2)
+                i=table[i]
             else:
-                j+=1
+                i+=1
     return ans
+
 
 text=input().rstrip()
 pattern=input().rstrip()
-table=maketable(pattern)
-ans=SMP(text,pattern,table)
+ans=KMP(pattern,text)
 print(len(ans))
 print(*ans)
-
