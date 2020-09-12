@@ -13,7 +13,7 @@ for k in range(1,n+1):
     for i in range(1,n+1):
         for j in range(1,n+1):
             if i==j:
-                arr[i][j]==0
+                arr[i][j]=0
                 continue
             arr[i][j]=min(arr[i][k]+arr[k][j],arr[i][j])
 for i in range(1,n+1):
