@@ -12,20 +12,11 @@ def solve(string):
         if string[i]==string[j]:
             j+=1
             table[i]=j
-    j=0
-    for i in range(1,LS):
-        while j>0 and string[j]!=string[i]:
-            j=table[j-1]
-        if string[i]==string[j]:
-            j+=1
-    print(i,j)
-    return print(len(string)//(i-j-1))
-
-
-
-
-
-
+    temp=LS-table[LS-1]
+    if LS%temp==0:
+        return print(LS//temp)
+    else:
+        return print(1)
 
 while 1:
     temp=input().rstrip()
