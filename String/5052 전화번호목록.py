@@ -1,7 +1,6 @@
 import sys
 from collections import deque
 input=sys.stdin.readline
-sys.setrecursionlimit(10**9)
 def add(trie,text):
     cur=trie
     for i in text:
@@ -13,7 +12,7 @@ def bfs(trie):
     queue=deque([trie])
     while queue:
         cur=queue.popleft()
-        if len(cur)>=2 and '*' in cur.keys():
+        if len(cur)>=2 and '*' in cur:
             return False
         else:
             for i in cur:
