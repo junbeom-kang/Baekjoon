@@ -7,7 +7,9 @@ def CCTV(i,j,W):
     for w in W:
         a=i+dx[w]
         b=j+dy[w]
+        print(a,b,n,m)
         while 0<=a<n and 0<=b<m and adj[a][b]!=6:
+            print(a,b,'!')
             if adj[a][b]==0:
                 back.append((a,b))
                 adj[a][b]=-1
@@ -17,7 +19,7 @@ def CCTV(i,j,W):
     return back
 
 def dfs(cnt,C):
-    global ans,m,n
+    global ans
     if cnt==len(C):
         temp=0
         print(adj)
