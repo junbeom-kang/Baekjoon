@@ -8,6 +8,7 @@ while flag:
     if n==0:
         sys.exit()
     for i in combinations(line,6):
+        print(i)
         print(' '.join(map(str,i)))
     print()
 
