@@ -3,6 +3,8 @@ from itertools import combinations
 from collections import deque
 input=sys.stdin.readline
 def BFS(green_start,red_start):
+    GQ = deque([])
+    RQ = deque([])
     flower=0
     cnt=1
     dx=[0,0,-1,1]
@@ -13,7 +15,7 @@ def BFS(green_start,red_start):
     for i in red_start:
         visited[i[0]][i[1]]=-2
         RQ.append(i)
-    while GQ or RQ:
+    while GQ and RQ:
         for _ in range(len(GQ)):
             rx,ry=GQ.popleft()
             if visited[rx][ry]==-100:
@@ -25,6 +27,7 @@ def BFS(green_start,red_start):
                     if adj[nrx][nry] and visited[nrx][nry]==-1:
                         visited[nrx][nry]=cnt
                         GQ.append((nrx,nry))
+
         for _ in range(len(RQ)):
             rx,ry=RQ.popleft()
             if visited[rx][ry]==-100:
@@ -48,8 +51,7 @@ n,m,g,r=map(int,input().split())
 adj=[list(map(int,input().split()))for _ in range(n)]
 max_flower=0
 can_start=[]
-GQ=deque([])
-RQ=deque([])
+
 for i in range(n):
     for j in range(m):
         if adj[i][j]==2:
@@ -61,6 +63,7 @@ for i in combinations(can_start,g+r):
         red_start=[x for x in i if x not in green_start]
         temp=BFS(green_start,red_start)
         max_flower=max(max_flower,temp)
+
 print(max_flower)
 
 
