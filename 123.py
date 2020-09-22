@@ -6,14 +6,13 @@ parent=[i for i in range(n+1)]
 adj=[[]for _ in range(n+1)]
 level=[[]for _ in range(n+1)]
 x=1
-print(parent)
 for _ in range(n):
     a,b,c=map(int,input().split())
     adj[a].extend([b,c])
     if b!=-1:
-        parent[b]=a
+        parent[b-1]=a
     if c!=-1:
-        parent[c]=a
+        parent[c-1]=a
 def findroot(v):
     if parent[v]==v:
         return v
@@ -32,8 +31,7 @@ def preorder(v,cnt):
         x+=1
         if adj[v][1]!=-1:
             preorder(adj[v][1],cnt+1)
-print(findroot(1))
-preorder(findroot(1),1)
+preorder(findroot(0)+1,1)
 ans=[]
 for i in range(len(level)):
     if level[i]:
