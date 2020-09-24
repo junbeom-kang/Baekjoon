@@ -4,6 +4,7 @@ INF=sys.maxsize
 n=int(input())
 m=int(input())
 arr=[[INF]*(n+1) for _ in range(n+1)]
+print(arr)
 for i in range(m):
     x,y,z=list(map(int,input().split()))
     if z<arr[x][y]:
