@@ -14,3 +14,4 @@ plt.plot(x,line.predict(x),'red')
 plt.xlabel('height')
 plt.ylabel('weight')
 plt.show()
+
