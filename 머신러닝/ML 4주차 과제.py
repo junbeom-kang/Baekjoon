@@ -1,6 +1,8 @@
 import matplotlib.pylab as plt
 #matplotlib.pylab모듈을 plt로 축약하여 불러온다
 import numpy as np
+from sklearn.metrics import accuracy_score
+
 #numpy모듈도 np로 축약하여 불러온다
 from sklearn.linear_model import LinearRegression
 #sklearn.linear_model에서 선형회귀모듈을 불러온다
@@ -30,6 +32,8 @@ x = np.linspace(0, 330, 100)
 #x를 0~330까지 100개로 나눠서 저장한
 y = x
 #y=x그래프를 만들기위해 y=x
+print(accuracy_score(diabetes_X_test, y_pred))
+
 plt.plot(x, y,'r')
 #그림을 그리위해 plot에 x,y를 넣는다
 plt.show()
