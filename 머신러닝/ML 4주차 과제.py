@@ -11,6 +11,7 @@ from sklearn import datasets
 from sklearn.model_selection import train_test_split
 #sklearn.model_selection의 train_test_split모듈을 불러온다
 diabetes = datasets.load_diabetes()
+print(diabetes)
 #당뇨병 데이터를 불러와서 diabets에 저장합니다
 diabetes_X_train = diabetes.data[:-20,:]
 #diabetes_X_train을 diabetes의 데이터행렬에서 뒤에서 20번째인 행 전까지의 모든행과  모든열을 저장한다

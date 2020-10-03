@@ -2,6 +2,7 @@ import numpy as np
 import matplotlib.pyplot as plt
 from sklearn.linear_model import LinearRegression
 height_weight = np.loadtxt('C:/User/heights.csv',delimiter=',')
+print(height_weight)
 x=height_weight[:,[0]]
 y=height_weight[:,[1]]
 line=LinearRegression()
