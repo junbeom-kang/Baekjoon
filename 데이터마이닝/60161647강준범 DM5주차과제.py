@@ -13,7 +13,8 @@ def solve2(score,subject):
         plt.hist(score[:,i])
         plt.xlabel(subject[i])
         plt.ylabel('Count')
-    plt.tight_layout()
+    plt.subplots_adjust(hspace=0.4, wspace=0.4)
+    #plt.tight_layout()
     plt.show()
 
 def solve3(score):
