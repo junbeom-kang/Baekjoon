@@ -52,5 +52,5 @@ keras.layers.Dense(10, activation="softmax")
 
 #갖고있는 트레이닝모델로 30번을 돌려보면서 확인
 model.compile(loss="sparse_categorical_crossentropy",optimizer="sgd",metrics=["accuracy"])
-tb_hist = keras.callbacks.TensorBoard(log_dir='./graph', histogram_freq=0, write_graph=True, write_images=True)
+tb_hist = keras.callbacks.TensorBoard(log_dir='../graph', histogram_freq=0, write_graph=True, write_images=True)
 history = model.fit(x_train, y_train, epochs=30,validation_data=(x_valid, y_valid),callbacks=[tb_hist])
