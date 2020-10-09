@@ -15,7 +15,21 @@ def dijkstra(k):
                 if weight+c<ans[b]:
                     ans[b]=weight+c
                     heappush(heap,[ans[b],b])
-
+def dijkstra1(s):
+    ans=[INF]*n
+    ans[s]=0
+    Q=[]
+    heappush(Q,(0,s))
+    while Q:
+        a,b=heappop(Q)
+        if ans[b]>a:
+            continue
+        else:
+            for q,w in adj[b]:
+                if ans[w]>ans[b]+q:
+                    ans[w]=ans[b]+q
+                    heappush(Q,(ans[w],w))
+    return ans
 
 v,e=map(int,input().split())
 k=int(input())
@@ -27,7 +41,7 @@ for _ in range(e):
     a,b,c=map(int,input().split())
     adj[a].append([c,b])
 
-dijkstra(k)
+dijkstra1(k)
 for i in ans[1:]:
     if i==INF:
         print('INF')
