@@ -1,24 +1,27 @@
 import sys
+import time
 from itertools import combinations
+s=time.time()
 input=sys.stdin.readline
 n,m=map(int,input().split())
 def DFS(r,c):
-    if r>n or c>m:
+    if r > n or c > m:
         return
-    if temp[r][c + 1] == 0:
-        temp[r][c + 1] = 2
-        DFS(r, c + 1)
-    if temp[r + 1][c] == 0:
-        temp[r + 1][c] = 2
-        DFS(r + 1, c)
+    else:
+        if temp[r][c + 1] == 0:
+            temp[r][c + 1] = 2
+            DFS(r, c + 1)
+        if temp[r + 1][c] == 0:
+            temp[r + 1][c] = 2
+            DFS(r + 1, c)
 
-    if temp[r - 1][c] == 0:
-        temp[r - 1][c] = 2
-        DFS(r - 1, c)
+        if temp[r - 1][c] == 0:
+            temp[r - 1][c] = 2
+            DFS(r - 1, c)
 
-    if temp[r][c - 1] == 0:
-        temp[r][c - 1] = 2
-        DFS(r, c - 1)
+        if temp[r][c - 1] == 0:
+            temp[r][c - 1] = 2
+            DFS(r, c - 1)
 
 
 dx=[0,0,1,-1]
@@ -39,7 +42,6 @@ ans1=0
 for i in combinations(zero,3):
     cnt1=0
     temp=[[]for _ in range(n+2)]
-    #각 리스트를 shallow copy
     for row in range(n+2):
         temp[row]=adj[row][:]
     for j in i:
@@ -50,3 +52,4 @@ for i in combinations(zero,3):
         cnt1+=temp[k].count(0)
     ans1=max(ans1,cnt1)
 print(ans1)
+print(time.time()-s)
