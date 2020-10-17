@@ -1,5 +1,4 @@
 import sys
-from collections import deque
 sys.setrecursionlimit(10**9)
 input=sys.stdin.readline
 def DFS(c,d):
@@ -32,28 +31,32 @@ for i in range(1,n+1):
     for j in range(1,m+1):
         if adj[i][j]>0:
             ice.add((i,j))
-Q=deque(ice)
-print(Q)
+
 day=0
-while Q:
-    for t in range(len(Q)):
-        a,b=Q[t][0],Q[t][1]
-        if adj[a+1][b]==1:
-            Q.append((a+1,b))
-            ice.remove((a+1,b))
-        adj[a+1][b]-=1
-        if adj[a][b+1]==1:
-            Q.append((a,b+1))
-            ice.remove((a,b+1))
-        adj[a][b+1]-=1
-        if adj[a-1][b]==1:
-            Q.append((a-1,b))
-            ice.remove((a-1,b))
-        adj[a-1][b]-=1
-        if adj[a][b-1]==1:
-            Q.append((a,b-1))
-            ice.remove((a,b-1))
-        adj[a][b-1]-=1
+while ice:
+    temp=set()
+    for t in ice:
+        a,b=t[0],t[1]
+        if adj[a+1][b]==0 and (a+1,b) not in ice:
+            adj[a][b]-=1
+            if adj[a][b]==0:
+                temp.add((a,b))
+        if adj[a][b+1]==0 and (a,b+1) not in ice:
+            adj[a][b] -= 1
+            if adj[a][b] == 0:
+                temp.add((a, b))
+        if adj[a-1][b]==0 and (a-1,b) not in ice:
+            adj[a][b] -= 1
+            if adj[a][b] == 0:
+                temp.add((a, b))
+        if adj[a][b-1]==0 and (a,b-1) not in ice:
+            adj[a][b] -= 1
+            if adj[a][b] == 0:
+                temp.add((a, b))
+    for r,t in temp:
+        adj[r][t]=0
+
+    ice=ice-temp
     day+=1
     count=1
     if ice:
