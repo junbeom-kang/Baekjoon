@@ -10,8 +10,11 @@ def solve(temp):
         elif stack:
             while stack and stack[-1][0]>high:
                 a,b=stack.pop()
+                tp=[]
                 ans=max((i-b)*a,ans)
-            stack.append((high,i))
+                tp.append((high,b))
+            stack.extend(tp)
+            stack.append((high,i-1))
     while stack:
         a,b=stack.pop()
         ans=max((temp[0]-b)*a,ans)
