@@ -21,4 +21,4 @@ def sum(start,end,left,right,node):
 init(1,n,1)
 for i in range(m):
     a,b=map(int,input().split())
-    print(sum(1,n,a,b,1))
+    print(sum(1,size,a,b,1))
