@@ -1,3 +1,4 @@
+'''
 import sys
 input=sys.stdin.readline
 n,m,k=map(int,input().split())
@@ -39,6 +40,7 @@ for i in range(m+k):
     else:
         print(sum(1,n,b,c,1))
 '''
+
 import sys
 from math import ceil,log2
 input=sys.stdin.readline
@@ -74,4 +76,3 @@ for i in range(m+k):
         update(b,diff)
     else:
         print(sum(1,size,b,c,1))
-'''
