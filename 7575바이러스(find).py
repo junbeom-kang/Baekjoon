@@ -10,10 +10,13 @@ for _ in range(n):
 for z in range(len(data[0])-k+1):
     t=data[0][z:z+k]
     for m in range(1,n):
-        can=''.join(data[m]).find(''.join(data[0][z:z+k]))
-        if can==-1:
-            can = ''.join(data[m][::-1]).find(''.join(data[0][z:z + k]))
-        if can==-1:
+        can=0
+        if ''.join(data[0][z:z+k]) in ''.join(data[m]):
+            can=1
+        if not can:
+            if ''.join(data[0][z:z+k]) in ''.join(data[m][::-1]):
+                can=1
+        if not can:
             break
         if m==n-1:
             print('YES')
