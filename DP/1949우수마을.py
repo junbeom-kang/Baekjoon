@@ -10,6 +10,7 @@ def dfs(v):
             dp[v][0]+=max(dp[i][0],dp[i][1])
     dp[v][1]+=w[v-1]
 
+
 n=int(input())
 w=list(map(int,input().split()))
 adj=[[]for _ in range(n+1)]
