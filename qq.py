@@ -1,3 +1,6 @@
-a={1:3,2:4,5:6}
-for i in a:
-    print(i)
+a=[[]for _ in range(2)]
+
+a[1]=[1]
+a[1].append(2)
+
+print(a)
