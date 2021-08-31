@@ -1,4 +1,3 @@
-a=[1,2,3,4]
-for i in a:
-    print(i)
-    a.pop()
+check = [[[True] * 4 for i in range(4)] for i in range(4)]
+
+print(len(check[0][0]))
