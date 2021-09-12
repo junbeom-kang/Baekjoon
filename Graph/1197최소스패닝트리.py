@@ -1,4 +1,6 @@
 import sys
+from collections import deque
+from collections import defaultdict
 from heapq import *
 def find(v):
     if parent[v]==v:
@@ -8,12 +10,12 @@ def find(v):
         return parent[v]
 
 def merge(q,w):
-    if q<w:
+    if q<=w:
         parent[w]=q
     else:
         parent[q]=w
-
-
+a={}
+a=a.sort(a.items(),key=lambda x:(x[0],x[1]))
 input=sys.stdin.readline
 v,e=map(int,input().split())
 heap=[]
@@ -30,4 +32,5 @@ while v!=1:
         merge(q,w)
         v-=1
         ans+=c
+print(parent)
 print(ans)

@@ -1,28 +1,47 @@
-import sys
-sys.setrecursionlimit(10**9)
-def solution(a):
-    global temp
-    answer = []
-    temp=set()
-    go("a",1,temp,1)
-    for i in a:
-        if i in temp:
-            answer.append('true')
+from heapq import heappush, heappop
+
+
+def solution():
+    def find(v):
+        if parent[v] == v:
+            return v
         else:
-            answer.append("false")
-    print(answer[0])
+            parent[v] = find(parent[v])
+            return parent[v]
+
+    def union(q, w):
+        print(q,w)
+        if q < w:
+            parent[w] = q
+        else:
+            parent[q] = w
+
+    answer = 0
+
+    n, m = map(int, input().split())
+    parent = [0] * (n + 1)
+    for i in range(1, n + 1):
+        parent[i] = i
+    heap = []
+    for i in range(m):
+        a, b, c = map(int, input().split())
+        heappush(heap, (c, a, b))
+    print("hi")
+    i = 0
+    while i != n - 1:
+        print(c)
+        c, a, b = heappop(heap)
+        q = find(a)
+        w = find(b)
+        print(q,w)
+        if q != w:
+            answer += c
+            union(q, w)
+            i += 1
+
+    print(parent)
+    print(answer)
     return answer
 
 
-def go(s,ant,temp,cnt):
-    if cnt>500 or s in temp:
-        return
-    else:
-        temp.add(s)
-        go(ant*"b"+s+ant*"b",ant,temp,cnt+(ant*2))
-        go(s+"a",ant+1,temp,cnt+1)
-        go("a"+s,ant+1,temp,cnt+1)
-
-if __name__ == '__main__':
-    solution(["abab","bbaa","bababa","bbbabababbbaa"])
-    print(temp)
+solution()
