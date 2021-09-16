@@ -15,7 +15,7 @@ def merge(q,w):
     else:
         parent[q]=w
 a={}
-a=a.sort(a.items(),key=lambda x:(x[0],x[1]))
+a=a.sort(a.items(),key=lambda x:(x[0],x[1]))    
 input=sys.stdin.readline
 v,e=map(int,input().split())
 heap=[]
