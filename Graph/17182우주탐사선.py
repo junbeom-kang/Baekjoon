@@ -7,14 +7,20 @@ INF = sys.maxsize
 def solution(arr):
     global answer
 
-    def go(v, m, cnt, sum):
+    def go(v, m):
         global answer
-        if cnt == n:
-            answer = min(answer, sum)
+        if m==((1<<n)-1):
+            return 0
+
+        elif dp[v][m]!=INF:
+            return dp[v][m]
         else:
+            temp=INF
             for i in range(n):
-                if not v & (1 << i):
-                    go(v + (1 << i), i, cnt + 1, sum + arr[m][i])
+                if not m & (1 << i):
+                    temp=min(temp,go(i,m+(1<<i))+arr[v][i])
+            dp[v][m]=temp
+            return dp[v][m]
 
     for k in range(n):
         for i in range(n):
@@ -23,9 +29,10 @@ def solution(arr):
                     continue
                 if arr[i][j] > arr[i][k] + arr[k][j]:
                     arr[i][j] = arr[i][k] + arr[k][j]
+    dp=[[INF]*(2**n) for _ in range(n)]
     answer = INF
-    go(1 << m, m, 1, 0)
-    print(answer)
+    go(m, 1<<m)
+    print(dp[m][1<<m])
     return
 
 
