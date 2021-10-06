@@ -1,44 +1,42 @@
 import sys
+from collections import defaultdict
 
 input = sys.stdin.readline
-INF = sys.maxsize
 
 
-def solution(arr):
-    global answer
-
-    def go(v, m):
-        global answer
-        if m==((1<<n)-1):
-            return 0
-
-        elif dp[v][m]!=INF:
-            return dp[v][m]
+def solution(t, n, m, first, second):
+    fd, sd = defaultdict(int), defaultdict(int)
+    fd[0], sd[0] = 1, 1
+    fd[sum(first)],sd[sum(second)]=1,1
+    for i in range(n):
+        temp = 0
+        for j in range(i, i+n-1):
+            temp += first[j%n]
+            fd[temp] += 1
+    for i in range(m):
+        temp = 0
+        for j in range(i, i+m-1):
+            temp += second[j%m]
+            sd[temp] += 1
+    answer = 0
+    for i in fd.keys():
+        if i > t:
+            continue
         else:
-            temp=INF
-            for i in range(n):
-                if not m & (1 << i):
-                    temp=min(temp,go(i,m+(1<<i))+arr[v][i])
-            dp[v][m]=temp
-            return dp[v][m]
+            if t - i in sd:
+                answer += sd[t - i] * fd[i]
+    print(answer)
 
-    for k in range(n):
-        for i in range(n):
-            for j in range(n):
-                if i == j:
-                    continue
-                if arr[i][j] > arr[i][k] + arr[k][j]:
-                    arr[i][j] = arr[i][k] + arr[k][j]
-    dp=[[INF]*(2**n) for _ in range(n)]
-    answer = INF
-    go(m, 1<<m)
-    print(dp[m][1<<m])
     return
 
 
 if __name__ == '__main__':
+    t = int(input())
     n, m = map(int, input().split())
-    arr = []
+    first = []
+    second = []
     for i in range(n):
-        arr.append(list(map(int, input().split())))
-    solution(arr)
+        first.append(int(input()))
+    for i in range(m):
+        second.append(int(input()))
+    solution(t, n, m, first, second)
