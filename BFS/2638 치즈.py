@@ -1,10 +1,33 @@
 from collections import deque
 import sys
+sys.setrecursionlimit(10**9)
 input=sys.stdin.readline
 dx=[0,0,-1,1]
 dy=[1,-1,0,0]
+def dfs(x,y):
+    arr[x][y]=0
+    if not visited[x][y]:
+        visited[x][y]=True
+        for t in range(4):
+            nx=x+dx[t]
+            ny=y+dy[t]
+            if 0<=nx<n and 0<=ny<m and not visited[nx][ny] and arr[nx][ny]==0:
+                dfs(nx,ny)
+def check(x,y):
+    temp=0
+    can=False
+    for t in range(4):
+        nx=x+dx[t]
+        ny=y+dy[t]
+        if visited[nx][ny] and arr[nx][ny]==0:
+            temp+=1
+        if temp==2:
+            can=True
+            break
+    return can
 def solution():
-    n,m=map(int,input().spit())
+    global arr,visited,n,m
+    n,m=map(int,input().split())
     arr=[]
     Q=deque([])
     visited=[[False]*m for _ in range(n)]
@@ -19,7 +42,7 @@ def solution():
     while Q:
         lq=len(Q)
         temp=[]
-        for i in range(len(lq)):
+        for i in range(lq):
             x,y = Q.popleft()
             if not check(x,y):
                 Q.append([x,y])
