@@ -1,2 +1,4 @@
-a="A 1"
-print(a[2])
+from collections import deque
+back = deque([])
+if back:
+    print('hi')
