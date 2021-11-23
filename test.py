@@ -1,4 +1,2 @@
-from collections import deque
-back = deque([])
-if back:
-    print('hi')
+a={1:("g2","q2")}
+print(a[1][0])
