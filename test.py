@@ -1,5 +1,3 @@
-from collections import defaultdict
-a=defaultdict(int)
-if not a[1]:
-    print("T")
+a='pid1 pid3 pid2'
+a=a.split()
 print(a)
