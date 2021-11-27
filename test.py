@@ -1,4 +1,4 @@
-from itertools import combinations
-
-a="12345"
-print(a[:1]+" "+a[2:3]+" "+a[4:])
+a=3
+b=4
+if a==3:a=
+print(a)
