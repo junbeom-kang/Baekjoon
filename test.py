@@ -1,4 +1,4 @@
-a=3
-b=4
-if a==3:a=
-print(a)
+from collections import deque
+temp=[1,2,3]
+Q=deque(temp)
+print(Q.popleft())
