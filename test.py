@@ -1,4 +1,5 @@
-from collections import Counter,deque
-Q=deque([])
-Q.extend([3,4,5])
-print(Q)
+from copy import deepcopy
+a=[1,2]
+b=a.append(3)
+print(a)
+
