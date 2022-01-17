@@ -29,3 +29,4 @@ if __name__ == '__main__':
         tt.append(i)
     print(sum(tt)-200000)
 
+
